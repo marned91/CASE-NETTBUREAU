@@ -5,7 +5,7 @@ import { jobApplicationForm } from './config/jobApplicationForm';
 
 function App() {
   return (
-    <div className="bg-light">
+    <div className="bg-light p-10">
       <FormRenderer config={jobApplicationForm} />
     </div>
   );

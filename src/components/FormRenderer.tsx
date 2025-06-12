@@ -14,27 +14,34 @@ type Props = {
 export function FormRenderer({ config }: Props) {
   const [formData, setFormData] = useState<Record<string, any>>({});
 
-  function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
+  function handleChange(
+    event: React.ChangeEvent<
+      HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement
+    >
+  ) {
     const { name, value } = event.target;
 
-    if (name === 'position') {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   }
 
   const filteredConfig = {
     ...config,
-    fields: config.fields.map((field) => {
-      if (field.name === 'skills' && formData['position']) {
-        const position = formData['position'];
-        const options = positionSkills[position] || field.options || [];
-        return { ...field, options };
-      }
-      return field;
-    }),
+    fields: config.fields
+      .map((field) => {
+        if (field.name === 'skills' && formData['position']) {
+          const position = formData['position'];
+          const options = positionSkills[position] || field.options || [];
+          return { ...field, options };
+        }
+        return field;
+      })
+      .filter((field) => {
+        if (field.name === 'skills' && !formData['position']) return false;
+        return true;
+      }),
   };
 
   return (
@@ -45,7 +52,7 @@ export function FormRenderer({ config }: Props) {
 
       {filteredConfig.fields.map((field: FormField) => {
         return (
-          <div key={field.name} className="space-y-1">
+          <div key={field.name} className="space-y-2">
             <label className="block font-normal text-sm">
               {field.label}
               {field.required && ' *'}
@@ -54,7 +61,11 @@ export function FormRenderer({ config }: Props) {
             {field.type === 'text' || field.type === 'email' ? (
               <FormInput field={field} />
             ) : field.type === 'textarea' ? (
-              <FormTextarea field={field} />
+              <FormTextarea
+                field={field}
+                value={formData[field.name] || ''}
+                onChange={handleChange}
+              />
             ) : field.type === 'select' ? (
               <FormSelect
                 field={field}
@@ -71,7 +82,7 @@ export function FormRenderer({ config }: Props) {
       })}
       <button
         type="submit"
-        className="bg-dark font-button text-white font-medium px-4 py-2 rounded hover:bg-black hover:shadow-md cursor-pointer transition"
+        className="bg-dark font-button text-white font-medium px-4 py-2 mt-5 rounded hover:bg-black hover:shadow-md cursor-pointer transition"
       >
         Submit Application
       </button>

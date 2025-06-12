@@ -20,7 +20,7 @@ export const jobApplicationForm: FormConfig = {
       errorMessage: 'Please enter a valid email',
     },
     {
-      label: 'Desired position',
+      label: 'Which role are you applying for?',
       name: 'position',
       type: 'select',
       required: true,
@@ -51,7 +51,7 @@ export const jobApplicationForm: FormConfig = {
       type: 'textarea',
       required: true,
       minLength: 20,
-      maxLength: 120,
+      maxLength: 200,
     },
     {
       label: 'Prefer to work from home?',

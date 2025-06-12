@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import type { FormField, FormConfig } from '../types/formTypes';
 import { positionSkills } from '../config/positionSkills';
+import { FormInput } from './FormInput';
+import { FormTextarea } from './FormTextarea';
+import { FormSelect } from './FormSelect';
+import { FormCheckboxGroup } from './FormCheckboxGroup';
+import { FormRadio } from './FormRadio';
 
 type Props = {
   config: FormConfig;
@@ -47,65 +52,19 @@ export function FormRenderer({ config }: Props) {
             </label>
 
             {field.type === 'text' || field.type === 'email' ? (
-              <input
-                type={field.type}
-                name={field.name}
-                className="w-full px-3 py-2 border border-gray-300 rounded"
-              />
+              <FormInput field={field} />
             ) : field.type === 'textarea' ? (
-              <textarea
-                name={field.name}
-                className="w-full px-3 py-2 border border-gray-300 rounded"
-                placeholder="Why do you want to work here?"
-              />
+              <FormTextarea field={field} />
             ) : field.type === 'select' ? (
-              <select
-                name={field.name}
+              <FormSelect
+                field={field}
                 value={formData[field.name] || ''}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded cursor-pointer"
-              >
-                <option value="">-- Select --</option>
-                {field.options?.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
+              />
             ) : field.type === 'checkbox-group' ? (
-              <div className="flex flex-wrap gap-4">
-                {field.options?.map((option) => (
-                  <label
-                    key={option}
-                    className="flex items-center gap-2 text-sm"
-                  >
-                    <input
-                      type="checkbox"
-                      name={field.name}
-                      value={option}
-                      className="h-4 w-4"
-                    />
-                    {option}
-                  </label>
-                ))}
-              </div>
+              <FormCheckboxGroup field={field} />
             ) : field.type === 'radio' ? (
-              <div className="flex flex-wrap gap-4">
-                {field.options?.map((option) => (
-                  <label
-                    key={option}
-                    className="flex items-center gap-1 text-sm"
-                  >
-                    <input
-                      type="radio"
-                      name={field.name}
-                      value={option}
-                      className="h-4 w-4"
-                    />
-                    {option}
-                  </label>
-                ))}
-              </div>
+              <FormRadio field={field} />
             ) : null}
           </div>
         );

@@ -1,4 +1,11 @@
-export type FieldType = 'text' | 'email' | 'checkbox' | 'textarea' | 'select';
+export type FieldType =
+  | 'text'
+  | 'email'
+  | 'checkbox'
+  | 'textarea'
+  | 'select'
+  | 'radio'
+  | 'checkbox-group';
 
 export type RequiredIf = {
   [fieldName: string]: string[];

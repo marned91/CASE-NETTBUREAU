@@ -28,10 +28,14 @@ export const jobApplicationForm: FormConfig = {
         'Frontend developer',
         'Backend developer',
         'UX Designer',
-        'Marketing',
-        'Operations',
         'Quality Assurance',
       ],
+    },
+    {
+      label: 'Skills',
+      name: 'skills',
+      type: 'checkbox-group',
+      options: [],
     },
     {
       label: 'Portfolio URL',
@@ -50,9 +54,10 @@ export const jobApplicationForm: FormConfig = {
       maxLength: 120,
     },
     {
-      label: 'Prefer to work from home',
-      name: 'homeOffice',
-      type: 'checkbox',
+      label: 'Prefer to work from home?',
+      name: 'homeOfficePreferences',
+      type: 'radio',
+      options: ['Yes', 'No', 'No preferences'],
     },
   ],
 };

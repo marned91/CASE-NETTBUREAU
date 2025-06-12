@@ -1,4 +1,6 @@
-export const formConfig = {
+import type { FormConfig } from '../types/formTypes';
+
+export const jobApplicationForm: FormConfig = {
   title: 'Job Application Form',
   fields: [
     {

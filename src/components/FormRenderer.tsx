@@ -8,6 +8,8 @@ import { FormRadio } from './FormRadio';
 import { validateForm } from '../utils/validateForm';
 import { handleChange } from '../utils/handleChange';
 import { getFilteredConfig } from '../utils/getFilteredConfig';
+import { validateConfig } from '../utils/validateConfig';
+import { ConfigErrorFallback } from './ConfigErrorFallback';
 
 type Props = {
   config: FormConfig;
@@ -49,6 +51,13 @@ export function FormRenderer({ config }: Props) {
     } else {
       setFormSubmitted(false);
     }
+  }
+
+  const configErrors = validateConfig(config);
+
+  if (configErrors.length > 0) {
+    console.error('Config validation errors:', configErrors);
+    return <ConfigErrorFallback errors={configErrors} />;
   }
 
   return (

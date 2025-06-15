@@ -64,7 +64,7 @@ export function validateForm(
     if (field.maxLength && value.length > field.maxLength) {
       errors[
         field.name
-      ] = `${field.label} Kan ikke være mer enn ${field.maxLength} tegn`;
+      ] = `${field.label} kan ikke være mer enn ${field.maxLength} tegn`;
       return;
     }
   });

@@ -16,7 +16,7 @@ export function validateForm(
           value === '' ||
           (Array.isArray(value) && value.length === 0))
       ) {
-        errors[field.name] = `${field.label} is required`;
+        errors[field.name] = 'This field is required';
         return;
       }
     }
@@ -28,7 +28,7 @@ export function validateForm(
         requiredValues.includes(formData[dependentField]) &&
         (!value || value === '')
       ) {
-        errors[field.name] = `${field.label} is required`;
+        errors[field.name] = 'This field is required';
         return;
       }
     }

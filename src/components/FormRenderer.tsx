@@ -61,35 +61,36 @@ export function FormRenderer({ config }: Props) {
             <FormInput
               field={field}
               value={formData[field.name] || ''}
-              onChange={(e) => handleChange(e, setFormData)}
+              onChange={(event) => handleChange(event, setFormData)}
             />
           ) : field.type === 'textarea' ? (
             <FormTextarea
               field={field}
               value={formData[field.name] || ''}
-              onChange={(e) => handleChange(e, setFormData)}
+              onChange={(event) => handleChange(event, setFormData)}
+              error={formErrors[field.name]}
             />
           ) : field.type === 'select' ? (
             <FormSelect
               field={field}
               value={formData[field.name] || ''}
-              onChange={(e) => handleChange(e, setFormData)}
+              onChange={(event) => handleChange(event, setFormData)}
             />
           ) : field.type === 'checkbox-group' ? (
             <FormCheckboxGroup
               field={field}
               values={formData[field.name] || []}
-              onChange={(e) => handleChange(e, setFormData)}
+              onChange={(event) => handleChange(event, setFormData)}
             />
           ) : field.type === 'radio' ? (
             <FormRadio
               field={field}
               value={formData[field.name] || ''}
-              onChange={(e) => handleChange(e, setFormData)}
+              onChange={(event) => handleChange(event, setFormData)}
             />
           ) : null}
 
-          {formErrors[field.name] && (
+          {field.type !== 'textarea' && formErrors[field.name] && (
             <p className="text-sm text-red-600">{formErrors[field.name]}</p>
           )}
         </div>

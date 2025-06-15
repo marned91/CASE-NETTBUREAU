@@ -1,3 +1,14 @@
+/**
+ * Updates form data state when an input changes.
+ *
+ * Handles different input types:
+ * - Text, email, select, textarea: sets the value directly.
+ * - Checkbox (single or group): adds/removes value in an array.
+ *
+ * @param event - The change event from an input, select, or textarea element.
+ * @param setFormData - React state setter function to update form data.
+ */
+
 export function handleChange(
   event: React.ChangeEvent<
     HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement

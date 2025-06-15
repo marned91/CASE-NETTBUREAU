@@ -5,8 +5,10 @@ import { jobApplicationForm } from './config/jobApplicationForm';
 
 function App() {
   return (
-    <div className="bg-gradient-to-b from-light to-darkFade p-10">
-      <FormRenderer config={jobApplicationForm} />
+    <div className="flex flex-col justify-center items-center min-h-screen bg-gradient-to-b from-light to-darkFade py-12">
+      <div className="w-full max-w-2xl">
+        <FormRenderer config={jobApplicationForm} />
+      </div>
     </div>
   );
 }

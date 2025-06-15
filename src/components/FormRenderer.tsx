@@ -13,6 +13,22 @@ type Props = {
   config: FormConfig;
 };
 
+/**
+ * Renders a dynamic form based on the provided JSON config.
+ *
+ * Features:
+ * - Loops through fields defined in the config and renders the right input component.
+ * - Tracks form state and updates it on user interaction.
+ * - Validates input using validateForm and displays error messages.
+ * - Shows a success message if the form is submitted without errors.
+ *
+ * Also uses helper functions to:
+ * - Dynamically filter fields (e.g. only show "skills" after a position is selected).
+ * - Handle all input changes consistently (including checkboxes).
+ *
+ * @param config - The JSON configuration describing the form structure and fields.
+ */
+
 export function FormRenderer({ config }: Props) {
   const [formData, setFormData] = useState<Record<string, any>>({});
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
@@ -45,8 +61,9 @@ export function FormRenderer({ config }: Props) {
       </h1>
 
       {formSubmitted && (
-        <p className="text-green-600 text-center text-sm">
-          ✅ Form submitted successfully!
+        <p className="font-normal text-green-800 bg-green-100 border border-green-200 px-4 py-3 rounded-md text-sm text-center flex items-center justify-center gap-2 shadow-sm">
+          <span className="text-lg">🥳</span> Application submitted
+          successfully!
         </p>
       )}
 

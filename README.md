@@ -1,54 +1,68 @@
-# React + TypeScript + Vite
+# 📄 Job Application Form – React Case Assignment
+This project was created as a response to a junior developer case assignment.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img width="1333" alt="Skjermbilde 2025-06-16 kl  00 41 04" src="https://github.com/user-attachments/assets/c2d95f5d-fad7-40b2-9727-f6295b75a712" />
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## The Task
 
-## Expanding the ESLint configuration
+Build a dynamic React application that:
+1. Reads a JSON object describing a form  
+2. Renders form fields based on the content of the JSON  
+3. Validates input and displays error messages  
+4. Logs the submitted form data to the console  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Evaluation Criteria
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Ability to use a JSON structure to build a user interface  
+- Component and code structure  
+- Logical thinking and validation handling  
+- Basic user experience: labeling, error messages, clarity  
+
+## Technologies Used
+
+- **React** with TypeScript  
+- **Tailwind CSS** for styling  
+- **JSDoc** for inline documentation   
+
+## Project Structure
+
+components/ – Reusable form components
+- ConfigErrorFallback.tsx
+- FormCheckboxGroup.tsx
+- FormInput.tsx
+- FormRadio.tsx
+- FormRenderer
+- FormSelect.tsx
+- FormTextarea.tsx
+
+config/ – JSON-based form definition and skill mapping
+- jobApplicationForm.ts
+- positionSkills.ts
+
+types/ – Shared type definitions
+- formTypes.ts
+
+utils/ – Core form logic
+- getFilteredConfig.ts
+- handleChange.ts
+- validateForm.ts
+- validateConfig.ts
+
+App.tsx – Entry point
+
+
+## How to Use
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Select a position and see relevant skill options update dynamically
+- Try submitting with incomplete or invalid input to see validation in action
+- Open your console to view submitted form data
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Notes
+- The config validator prevents rendering if the JSON is misconfigured (e.g. invalid type, missing label)
+- The user never sees raw error logs — instead, a friendly message is shown if the developer makes a mistake

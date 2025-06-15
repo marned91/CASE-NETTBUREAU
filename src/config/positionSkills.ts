@@ -1,5 +1,5 @@
 export const positionSkills: Record<string, string[]> = {
-  'Frontend developer': [
+  'Frontend-utvikler': [
     'HTML',
     'CSS',
     'JavaScript',
@@ -7,11 +7,11 @@ export const positionSkills: Record<string, string[]> = {
     'TypeScript',
     'Next.js',
   ],
-  'Backend developer': ['Node.js', 'Express', 'MongoDB', 'SQL', 'API Design'],
-  'UX Designer': ['Figma', 'User Research', 'Wireframing', 'Prototyping'],
-  'Quality Assurance': [
-    'Manual Testing',
-    'Automated Testing',
+  'Backend-utvikler': ['Node.js', 'Express', 'MongoDB', 'SQL', 'API Design'],
+  'UX-designer': ['Figma', 'Brukerundersøkelser', 'Wireframes', 'Prototyping'],
+  'Kvalitetssikring (QA)': [
+    'Manuell testing',
+    'Automatisert testing',
     'Cypress',
     'Jest',
   ],

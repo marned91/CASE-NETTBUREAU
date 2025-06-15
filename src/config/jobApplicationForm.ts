@@ -1,38 +1,36 @@
 import type { FormConfig } from '../types/formTypes';
 
 export const jobApplicationForm: FormConfig = {
-  title: 'Job Application Form',
+  title: 'Jobbsøknadsskjema',
   fields: [
     {
-      label: 'Full Name',
+      label: 'Fullt navn',
       name: 'fullName',
       type: 'text',
       required: true,
       minLength: 3,
-      errorMessage: 'Full name must be at least 3 characters.',
     },
     {
-      label: 'Email Address',
+      label: 'E-postadresse',
       name: 'email',
       type: 'email',
       required: true,
       pattern: '^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$',
-      errorMessage: 'Please enter a valid email',
     },
     {
-      label: 'Which role are you applying for?',
+      label: 'Hvilken stilling søker du?',
       name: 'position',
       type: 'select',
       required: true,
       options: [
-        'Frontend developer',
-        'Backend developer',
-        'UX Designer',
-        'Quality Assurance',
+        'Frontend-utvikler',
+        'Backend-utvikler',
+        'UX-designer',
+        'Kvalitetssikring (QA)',
       ],
     },
     {
-      label: 'Skills',
+      label: 'Ferdigheter',
       name: 'skills',
       type: 'checkbox-group',
       options: [],
@@ -42,11 +40,11 @@ export const jobApplicationForm: FormConfig = {
       name: 'portfolio',
       type: 'text',
       requiredIf: {
-        position: ['Frontend developer', 'UX Designer'],
+        position: ['Frontend-utvikler', 'UX-designer'],
       },
     },
     {
-      label: 'Motivational Letter',
+      label: 'Motivasjonstekst',
       name: 'motivation',
       type: 'textarea',
       required: true,
@@ -54,10 +52,10 @@ export const jobApplicationForm: FormConfig = {
       maxLength: 200,
     },
     {
-      label: 'Prefer to work from home?',
+      label: 'Foretrekker du hjemmekontor?',
       name: 'homeOfficePreferences',
       type: 'radio',
-      options: ['Yes', 'No', 'No preferences'],
+      options: ['Ja', 'Nei', 'Ingen preferanser'],
     },
   ],
 };

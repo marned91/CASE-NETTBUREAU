@@ -4,7 +4,7 @@
 @theme {
   --font-normal: 'Quicksand', 'sans-serif';
   --font-large: 'Oxygen', 'sans-serif';
-  --font-buttons: 'DM Sans', 'sans-serif';
+  --font-button: 'DM Sans', 'sans-serif';
 
   --breakpoint-3xl: 120rem;
 

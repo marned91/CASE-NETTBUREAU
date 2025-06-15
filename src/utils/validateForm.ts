@@ -29,7 +29,7 @@ export function validateForm(
           value === '' ||
           (Array.isArray(value) && value.length === 0))
       ) {
-        errors[field.name] = 'This field is required';
+        errors[field.name] = 'Feltet er obligatorisk';
         return;
       }
     }
@@ -41,7 +41,7 @@ export function validateForm(
         requiredValues.includes(formData[dependentField]) &&
         (!value || value === '')
       ) {
-        errors[field.name] = 'This field is required';
+        errors[field.name] = 'Feltet er obligatorisk';
         return;
       }
     }
@@ -49,7 +49,7 @@ export function validateForm(
     if (field.pattern && value) {
       const regex = new RegExp(field.pattern);
       if (!regex.test(value)) {
-        errors[field.name] = field.errorMessage || `${field.label} is invalid`;
+        errors[field.name] = field.errorMessage || 'Ugyldig verdi';
         return;
       }
     }
@@ -57,14 +57,14 @@ export function validateForm(
     if (field.minLength && value.length < field.minLength) {
       errors[
         field.name
-      ] = `${field.label} must be at least ${field.minLength} characters`;
+      ] = `${field.label} må være minst ${field.minLength} tegn`;
       return;
     }
 
     if (field.maxLength && value.length > field.maxLength) {
       errors[
         field.name
-      ] = `${field.label} must be less than ${field.maxLength} characters`;
+      ] = `${field.label} Kan ikke være mer enn ${field.maxLength} tegn`;
       return;
     }
   });

@@ -18,11 +18,11 @@ export function FormTextarea({ field, value, onChange, error }: Props) {
         onChange={onChange}
         maxLength={maxLength}
         className="w-full px-3 py-2 border border-gray-300 rounded"
-        placeholder="Why do you want to work with us?"
+        placeholder="Hvorfor vil du jobbe med oss?"
       />
       {error && <p className="text-sm text-red-600 mt-1">{error}</p>}
       <div className="text-sm text-gray-500 text-right">
-        {value.length}/{maxLength} characters
+        {value.length}/{maxLength} tegn
       </div>
     </div>
   );

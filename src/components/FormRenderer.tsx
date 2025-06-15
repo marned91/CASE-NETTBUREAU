@@ -62,8 +62,7 @@ export function FormRenderer({ config }: Props) {
 
       {formSubmitted && (
         <p className="font-normal text-green-800 bg-green-100 border border-green-200 px-4 py-3 rounded-md text-sm text-center flex items-center justify-center gap-2 shadow-sm">
-          <span className="text-lg">🥳</span> Application submitted
-          successfully!
+          <span className="text-lg">🥳</span>Søknaden din er sendt!
         </p>
       )}
 
@@ -115,9 +114,9 @@ export function FormRenderer({ config }: Props) {
 
       <button
         type="submit"
-        className="bg-dark font-button  w-full text-white font-medium px-4 py-2 mt-5 rounded hover:bg-black hover:shadow-md cursor-pointer transition"
+        className="bg-dark font-button font-medium  w-full text-white font-medium px-4 py-2 mt-5 rounded hover:bg-black hover:shadow-md cursor-pointer transition"
       >
-        Submit Application
+        Send søknad
       </button>
     </form>
   );

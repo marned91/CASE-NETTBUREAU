@@ -1,4 +1,4 @@
-# 📄 Job Application Form – React Case Assignment
+# 📄 Job Application Form – Nettbureau Case Assignment
 This project was created as a response to a junior developer case assignment.
 
 <img width="1333" alt="Skjermbilde 2025-06-16 kl  00 41 04" src="https://github.com/user-attachments/assets/c2d95f5d-fad7-40b2-9727-f6295b75a712" />

@@ -38,7 +38,7 @@ export function FormRenderer({ config }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-10 rounded-xl shadow-md max-w-xl mx-auto space-y-6"
+      className="bg-white p-5 md:p-10 rounded-xl shadow-md max-w-xl mx-auto space-y-6"
     >
       <h1 className="font-large text-3xl font-bold text-center pb-5">
         {config.title}
@@ -98,7 +98,7 @@ export function FormRenderer({ config }: Props) {
 
       <button
         type="submit"
-        className="bg-dark font-button text-white font-medium px-4 py-2 mt-5 rounded hover:bg-black hover:shadow-md cursor-pointer transition"
+        className="bg-dark font-button  w-full text-white font-medium px-4 py-2 mt-5 rounded hover:bg-black hover:shadow-md cursor-pointer transition"
       >
         Submit Application
       </button>

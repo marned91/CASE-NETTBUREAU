@@ -66,3 +66,4 @@ npm run dev
 ## Notes
 - The config validator prevents rendering if the JSON is misconfigured (e.g. invalid type, missing label)
 - The user never sees raw error logs — instead, a friendly message is shown if the developer makes a mistake
+- Bonus features include dynamic conditional fields (like skills and portfolio) and config validation

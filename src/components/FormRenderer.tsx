@@ -6,6 +6,7 @@ import { FormTextarea } from './FormTextarea';
 import { FormSelect } from './FormSelect';
 import { FormCheckboxGroup } from './FormCheckboxGroup';
 import { FormRadio } from './FormRadio';
+import { validateForm } from '../utils/validateForm';
 
 type Props = {
   config: FormConfig;
@@ -33,7 +34,7 @@ export function FormRenderer({ config }: Props) {
         } else {
           return {
             ...prev,
-            [name]: prevValues.filter((v: string) => v !== value),
+            [name]: prevValues.filter((item: string) => item !== value),
           };
         }
       });
@@ -44,6 +45,9 @@ export function FormRenderer({ config }: Props) {
       }));
     }
   }
+
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const filteredConfig = {
     ...config,
@@ -65,22 +69,16 @@ export function FormRenderer({ config }: Props) {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const missingFields: string[] = [];
+    const errors = validateForm(filteredConfig.fields, formData);
+    setFormErrors(errors);
 
-    filteredConfig.fields.forEach((field) => {
-      const value = formData[field.name];
-
-      const isRequired = field.required || false;
-
-      if (isRequired && (!value || value === '')) {
-        missingFields.push(field.label);
-      }
-    });
-
-    if (missingFields.length > 0) {
-      return;
+    if (Object.keys(errors).length === 0) {
+      console.log('✅ Submitted form data:', formData);
+      setFormSubmitted(true);
+      setFormData({});
+    } else {
+      setFormSubmitted(false);
     }
-    console.log('✅ Submitted form data:', formData);
   }
 
   return (
@@ -91,6 +89,11 @@ export function FormRenderer({ config }: Props) {
       <h1 className="font-large text-3xl font-bold text-center pb-5">
         {config.title}
       </h1>
+      {formSubmitted && (
+        <p className="text-green-600 text-center text-sm">
+          ✅ Form submitted successfully!
+        </p>
+      )}
 
       {filteredConfig.fields.map((field: FormField) => {
         return (
@@ -101,35 +104,70 @@ export function FormRenderer({ config }: Props) {
             </label>
 
             {field.type === 'text' || field.type === 'email' ? (
-              <FormInput
-                field={field}
-                value={formData[field.name] || ''}
-                onChange={handleChange}
-              />
+              <>
+                <FormInput
+                  field={field}
+                  value={formData[field.name] || ''}
+                  onChange={handleChange}
+                />
+                {formErrors[field.name] && (
+                  <p className="text-sm text-red-600">
+                    {formErrors[field.name]}
+                  </p>
+                )}
+              </>
             ) : field.type === 'textarea' ? (
-              <FormTextarea
-                field={field}
-                value={formData[field.name] || ''}
-                onChange={handleChange}
-              />
+              <>
+                <FormTextarea
+                  field={field}
+                  value={formData[field.name] || ''}
+                  onChange={handleChange}
+                />
+                {formErrors[field.name] && (
+                  <p className="text-sm text-red-600">
+                    {formErrors[field.name]}
+                  </p>
+                )}
+              </>
             ) : field.type === 'select' ? (
-              <FormSelect
-                field={field}
-                value={formData[field.name] || ''}
-                onChange={handleChange}
-              />
+              <>
+                <FormSelect
+                  field={field}
+                  value={formData[field.name] || ''}
+                  onChange={handleChange}
+                />
+                {formErrors[field.name] && (
+                  <p className="text-sm text-red-600">
+                    {formErrors[field.name]}
+                  </p>
+                )}
+              </>
             ) : field.type === 'checkbox-group' ? (
-              <FormCheckboxGroup
-                field={field}
-                values={formData[field.name] || []}
-                onChange={handleChange}
-              />
+              <>
+                <FormCheckboxGroup
+                  field={field}
+                  values={formData[field.name] || []}
+                  onChange={handleChange}
+                />
+                {formErrors[field.name] && (
+                  <p className="text-sm text-red-600">
+                    {formErrors[field.name]}
+                  </p>
+                )}
+              </>
             ) : field.type === 'radio' ? (
-              <FormRadio
-                field={field}
-                value={formData[field.name] || ''}
-                onChange={handleChange}
-              />
+              <>
+                <FormRadio
+                  field={field}
+                  value={formData[field.name] || ''}
+                  onChange={handleChange}
+                />
+                {formErrors[field.name] && (
+                  <p className="text-sm text-red-600">
+                    {formErrors[field.name]}
+                  </p>
+                )}
+              </>
             ) : null}
           </div>
         );

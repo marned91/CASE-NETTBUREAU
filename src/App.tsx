@@ -5,7 +5,7 @@ import { jobApplicationForm } from './config/jobApplicationForm';
 
 function App() {
   return (
-    <div className="bg-light p-10">
+    <div className="bg-gradient-to-b from-light to-darkFade p-10">
       <FormRenderer config={jobApplicationForm} />
     </div>
   );

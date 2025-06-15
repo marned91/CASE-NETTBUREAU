@@ -19,12 +19,30 @@ export function FormRenderer({ config }: Props) {
       HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement
     >
   ) {
-    const { name, value } = event.target;
+    const target = event.target;
+    const { name, value, type } = target;
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    if (type === 'checkbox' && target instanceof HTMLInputElement) {
+      const checked = target.checked;
+
+      setFormData((prev) => {
+        const prevValues = prev[name] || [];
+
+        if (checked) {
+          return { ...prev, [name]: [...prevValues, value] };
+        } else {
+          return {
+            ...prev,
+            [name]: prevValues.filter((v: string) => v !== value),
+          };
+        }
+      });
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   }
 
   const filteredConfig = {
@@ -44,8 +62,32 @@ export function FormRenderer({ config }: Props) {
       }),
   };
 
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const missingFields: string[] = [];
+
+    filteredConfig.fields.forEach((field) => {
+      const value = formData[field.name];
+
+      const isRequired = field.required || false;
+
+      if (isRequired && (!value || value === '')) {
+        missingFields.push(field.label);
+      }
+    });
+
+    if (missingFields.length > 0) {
+      return;
+    }
+    console.log('✅ Submitted form data:', formData);
+  }
+
   return (
-    <form className="bg-white p-10 rounded-xl shadow-md max-w-xl mx-auto space-y-6">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white p-10 rounded-xl shadow-md max-w-xl mx-auto space-y-6"
+    >
       <h1 className="font-large text-3xl font-bold text-center pb-5">
         {config.title}
       </h1>
@@ -59,7 +101,11 @@ export function FormRenderer({ config }: Props) {
             </label>
 
             {field.type === 'text' || field.type === 'email' ? (
-              <FormInput field={field} />
+              <FormInput
+                field={field}
+                value={formData[field.name] || ''}
+                onChange={handleChange}
+              />
             ) : field.type === 'textarea' ? (
               <FormTextarea
                 field={field}
@@ -73,9 +119,17 @@ export function FormRenderer({ config }: Props) {
                 onChange={handleChange}
               />
             ) : field.type === 'checkbox-group' ? (
-              <FormCheckboxGroup field={field} />
+              <FormCheckboxGroup
+                field={field}
+                values={formData[field.name] || []}
+                onChange={handleChange}
+              />
             ) : field.type === 'radio' ? (
-              <FormRadio field={field} />
+              <FormRadio
+                field={field}
+                value={formData[field.name] || ''}
+                onChange={handleChange}
+              />
             ) : null}
           </div>
         );

@@ -15,7 +15,7 @@ export function FormSelect({ field, value, onChange }: Props) {
       onChange={onChange}
       className="w-full px-3 py-2 border border-gray-300 rounded cursor-pointer"
     >
-      <option value="">-- Select --</option>
+      <option value="">-- Select a role --</option>
       {field.options?.map((option) => (
         <option key={option} value={option}>
           {option}

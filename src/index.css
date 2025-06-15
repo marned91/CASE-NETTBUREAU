@@ -8,9 +8,10 @@
 
   --breakpoint-3xl: 120rem;
 
-  --color-light: #d1dcd6;
+  --color-light: #acbac3;
   --color-dark: #3e3e3e;
   --color-darkHover: #1c21bd;
+  --color-darkFade: #335679;
 
   --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1);

@@ -104,71 +104,39 @@ export function FormRenderer({ config }: Props) {
             </label>
 
             {field.type === 'text' || field.type === 'email' ? (
-              <>
-                <FormInput
-                  field={field}
-                  value={formData[field.name] || ''}
-                  onChange={handleChange}
-                />
-                {formErrors[field.name] && (
-                  <p className="text-sm text-red-600">
-                    {formErrors[field.name]}
-                  </p>
-                )}
-              </>
+              <FormInput
+                field={field}
+                value={formData[field.name] || ''}
+                onChange={handleChange}
+              />
             ) : field.type === 'textarea' ? (
-              <>
-                <FormTextarea
-                  field={field}
-                  value={formData[field.name] || ''}
-                  onChange={handleChange}
-                />
-                {formErrors[field.name] && (
-                  <p className="text-sm text-red-600">
-                    {formErrors[field.name]}
-                  </p>
-                )}
-              </>
+              <FormTextarea
+                field={field}
+                value={formData[field.name] || ''}
+                onChange={handleChange}
+              />
             ) : field.type === 'select' ? (
-              <>
-                <FormSelect
-                  field={field}
-                  value={formData[field.name] || ''}
-                  onChange={handleChange}
-                />
-                {formErrors[field.name] && (
-                  <p className="text-sm text-red-600">
-                    {formErrors[field.name]}
-                  </p>
-                )}
-              </>
+              <FormSelect
+                field={field}
+                value={formData[field.name] || ''}
+                onChange={handleChange}
+              />
             ) : field.type === 'checkbox-group' ? (
-              <>
-                <FormCheckboxGroup
-                  field={field}
-                  values={formData[field.name] || []}
-                  onChange={handleChange}
-                />
-                {formErrors[field.name] && (
-                  <p className="text-sm text-red-600">
-                    {formErrors[field.name]}
-                  </p>
-                )}
-              </>
+              <FormCheckboxGroup
+                field={field}
+                values={formData[field.name] || []}
+                onChange={handleChange}
+              />
             ) : field.type === 'radio' ? (
-              <>
-                <FormRadio
-                  field={field}
-                  value={formData[field.name] || ''}
-                  onChange={handleChange}
-                />
-                {formErrors[field.name] && (
-                  <p className="text-sm text-red-600">
-                    {formErrors[field.name]}
-                  </p>
-                )}
-              </>
+              <FormRadio
+                field={field}
+                value={formData[field.name] || ''}
+                onChange={handleChange}
+              />
             ) : null}
+            {formErrors[field.name] && (
+              <p className="text-sm text-red-600">{formErrors[field.name]}</p>
+            )}
           </div>
         );
       })}

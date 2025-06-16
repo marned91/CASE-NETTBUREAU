@@ -10,6 +10,7 @@ import { handleChange } from '../utils/handleChange';
 import { getFilteredConfig } from '../utils/getFilteredConfig';
 import { validateConfig } from '../utils/validateConfig';
 import { ConfigErrorFallback } from './ConfigErrorFallback';
+import { isFieldConditionallyRequired } from '../utils/isFieldConditionallyRequired';
 
 type Props = {
   config: FormConfig;
@@ -79,7 +80,9 @@ export function FormRenderer({ config }: Props) {
         <div key={field.name} className="space-y-2">
           <label className="block font-normal text-sm">
             {field.label}
-            {field.required && ' *'}
+            {(field.required ||
+              isFieldConditionallyRequired(field, formData)) &&
+              ' *'}
           </label>
 
           {field.type === 'text' || field.type === 'email' ? (
